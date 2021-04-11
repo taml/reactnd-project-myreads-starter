@@ -4,7 +4,7 @@ import Book from './Book'
 
 function Bookshelf(props) {
 
-    const { sectionName, allBooks } = props
+    const { sectionName, allBooks, onUpdateBook } = props
     const sectionKey = Object.keys(sectionName)[0]
 
     return(
@@ -14,7 +14,7 @@ function Bookshelf(props) {
                     <ol className="books-grid">
                         {allBooks.filter(book => book.shelf === sectionKey).map((book) => (
                             <li key={book.id}>
-                                <Book bookTitle={book.title} bookAuthor={book.authors} bookImg={book.imageLinks.thumbnail}/>
+                                <Book singleBook={book} onUpdateBook={onUpdateBook}/>
                             </li>
                         ))}
                     </ol>

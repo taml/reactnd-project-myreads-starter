@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 function ListBooks(props) {
 
-    const { allBooks } = props
+    const { allBooks, onUpdateBook } = props
 
     return(
         <div className="list-books">
@@ -13,9 +13,9 @@ function ListBooks(props) {
             </div>
             <div className="list-books-content">
                 <div>
-                    <Bookshelf sectionName={{"wantToRead":"Want To Read"}} allBooks={allBooks} />
-                    <Bookshelf sectionName={{"currentlyReading":"Currently Reading"}} allBooks={allBooks} />
-                    <Bookshelf sectionName={{"read": "Read"}} allBooks={allBooks} />
+                    <Bookshelf sectionName={{"wantToRead":"Want To Read"}} allBooks={allBooks} onUpdateBook={onUpdateBook} />
+                    <Bookshelf sectionName={{"currentlyReading":"Currently Reading"}} allBooks={allBooks} onUpdateBook={onUpdateBook} />
+                    <Bookshelf sectionName={{"read": "Read"}} allBooks={allBooks} onUpdateBook={onUpdateBook} />
                 </div>
             </div>
             <div className="open-search">
