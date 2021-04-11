@@ -2,7 +2,9 @@ import React from 'react'
 import Bookshelf from './Bookshelf'
 import { Link } from 'react-router-dom'
 
-function ListBooks() {
+function ListBooks(props) {
+
+    const { allBooks } = props
 
     return(
         <div className="list-books">
@@ -11,9 +13,9 @@ function ListBooks() {
             </div>
             <div className="list-books-content">
                 <div>
-                    <Bookshelf sectionName="Want To Read" />
-                    <Bookshelf sectionName="Currently Reading" />
-                    <Bookshelf sectionName="Read" />
+                    <Bookshelf sectionName={{"wantToRead":"Want To Read"}} allBooks={allBooks} />
+                    <Bookshelf sectionName={{"currentlyReading":"Currently Reading"}} allBooks={allBooks} />
+                    <Bookshelf sectionName={{"read": "Read"}} allBooks={allBooks} />
                 </div>
             </div>
             <div className="open-search">
