@@ -4,7 +4,7 @@ import Book from './Book'
 
 function Bookshelf(props) {
 
-    const sectionName = props.sectionName
+    const { sectionName } = props
 
     return(
         <div className="bookshelf">

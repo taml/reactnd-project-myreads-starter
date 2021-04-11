@@ -1,7 +1,7 @@
 import React from 'react'
 // import * as BooksAPI from './BooksAPI'
+import ListBooks from './ListBooks'
 import SearchBooks from './SearchBooks'
-import Bookshelf from './Bookshelf'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -15,9 +15,9 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  updateScreen = (show) => {
+  updateScreen = (toggle) => {
     this.setState(() => ({
-      showSearchPage: show
+      showSearchPage: toggle
     }))
   }
 
@@ -25,23 +25,9 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <SearchBooks onChangeScreen={this.updateScreen}/>
+          <SearchBooks onChangeScreen={this.updateScreen} />
         ) : (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <Bookshelf sectionName="Want To Read" />
-                <Bookshelf sectionName="Currently Reading" />
-                <Bookshelf sectionName="Read" />
-              </div>
-            </div>
-            <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
-            </div>
-          </div>
+          <ListBooks onChangeScreen={this.updateScreen} />
         )}
       </div>
     )
