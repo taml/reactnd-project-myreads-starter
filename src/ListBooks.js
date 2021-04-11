@@ -1,9 +1,8 @@
 import React from 'react'
 import Bookshelf from './Bookshelf'
+import { Link } from 'react-router-dom'
 
-function ListBooks(props) {
-
-    const { onChangeScreen } = props
+function ListBooks() {
 
     return(
         <div className="list-books">
@@ -18,7 +17,9 @@ function ListBooks(props) {
                 </div>
             </div>
             <div className="open-search">
-                <button onClick={() => onChangeScreen(true)}>Add a book</button>
+                <Link to="/search" >
+                    <button>Add a book</button>
+                </Link>
             </div>
         </div>
     )
