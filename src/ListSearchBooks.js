@@ -1,32 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Book from './Book'
 
 
-class ListSearchBooks extends Component {
+function ListSearchBooks(props) {
 
-
-    render() {
-
-        const { onUpdateBook, booksReturned } = this.props
+    const { onUpdateBook, booksReturned, clearQuery } = props
 
         return(
-            <ol className="books-grid">
-                {console.log(booksReturned)}
-                {booksReturned.map((book) => (
-                    <li key={book.id}>
-                        <Book singleBook={book} onUpdateBook={onUpdateBook}/>
-                    </li>
-                ))}
-            </ol>
+            <div>
+                <ol className="books-grid">
+                    {booksReturned.map((book) => (
+                        <li key={book.id}>
+                            <Book singleBook={book} onUpdateBook={onUpdateBook}/>
+                        </li>
+                    ))}
+                </ol>
+                <div className="reset-search-container">
+                    <button className="reset-search"onClick={clearQuery}>Reset Search</button>
+                </div>
+            </div>
         )
-    }
 }
 
 export default ListSearchBooks
-
-
-// Go through all items in books returned
-// Check if id is in all books
-// If id is in all books get shelf info and set shelf info
-// Otherwise set shelf info to none
-// Then pass book into li

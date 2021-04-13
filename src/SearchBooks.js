@@ -46,14 +46,12 @@ class SearchBooks extends Component {
 
     compareBooks = (booksReturned, allBooks) => {
         booksReturned.map((book) => {
+            Object.assign(book, {shelf: "none"})
             allBooks.map((bk) => {
                 if(book.id === bk.id){
                     Object.assign(book, {shelf: bk.shelf})
-                }
+                } 
             })
-            if (typeof book.shelf === "undefined") {
-                Object.assign(book, {shelf: "none"})
-            }
         })
         return booksReturned
     }
@@ -75,8 +73,9 @@ class SearchBooks extends Component {
                     </div>
                 </div>
                 <div className="search-books-results">
-                    {!querySuccessful && <p>No books available, try searching...</p>}
-                    <ListSearchBooks onUpdateBook={onUpdateBook} booksReturned={this.compareBooks(booksReturned, allBooks)} />
+                    {!querySuccessful && <p className="search-prompt">No books available, try searching...</p>}
+                    {querySuccessful &&  <ListSearchBooks onUpdateBook={onUpdateBook} 
+                        booksReturned={this.compareBooks(booksReturned, allBooks)} clearQuery={this.clearBookQuery} />}
                 </div>
             </div>
         )

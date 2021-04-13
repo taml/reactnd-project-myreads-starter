@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import cover from '../src/images/cover.png'
 
+function Book(props) {
 
-class Book extends Component {
-
-    render() {
-        const { singleBook, onUpdateBook } = this.props
+    const { singleBook, onUpdateBook } = props
 
         return(
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${typeof singleBook.imageLinks !== "undefined" ? singleBook.imageLinks.thumbnail : "../src/images/cover.png"})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',
+                        backgroundImage: `url(${typeof singleBook.imageLinks !== "undefined" ? singleBook.imageLinks.thumbnail : cover})` }}></div>
                     <div className="book-shelf-changer">
                         <select value={singleBook.shelf} onChange={(e) => onUpdateBook(singleBook, e.target.value)}>
                             <option value="move" disabled>Move to...</option>
@@ -24,7 +24,6 @@ class Book extends Component {
                 <div className="book-authors">{typeof singleBook.authors !== "undefined" ? singleBook.authors.map((author, index) => ((index ? ", " : "") + author)) : "Unknown"}</div>
             </div>
         )
-    }
 }
 
 export default Book
