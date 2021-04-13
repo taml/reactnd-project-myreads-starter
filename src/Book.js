@@ -1,15 +1,15 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React, { Component } from 'react'
 
 
-function Book(props) {
+class Book extends Component {
 
-    const { singleBook, onUpdateBook } = props
+    render() {
+        const { singleBook, onUpdateBook } = this.props
 
         return(
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${singleBook.imageLinks.thumbnail})` }}></div>
+                    <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${typeof singleBook.imageLinks !== "undefined" ? singleBook.imageLinks.thumbnail : "../src/images/cover.png"})` }}></div>
                     <div className="book-shelf-changer">
                         <select value={singleBook.shelf} onChange={(e) => onUpdateBook(singleBook, e.target.value)}>
                             <option value="move" disabled>Move to...</option>
@@ -21,9 +21,10 @@ function Book(props) {
                     </div>
                 </div>
                 <div className="book-title">{singleBook.title}</div>
-                <div className="book-authors">{singleBook.authors}</div>
+                <div className="book-authors">{typeof singleBook.authors !== "undefined" ? singleBook.authors.map((author, index) => ((index ? ", " : "") + author)) : "Unknown"}</div>
             </div>
         )
+    }
 }
 
 export default Book
